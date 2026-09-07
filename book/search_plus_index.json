@@ -1,1 +1,1 @@
-{"./":{"url":"./","title":"Docker","keywords":"","body":"Docker Docker 是一款容器化引擎，通过将应用及其依赖打包，从而实现一次构建、到处运行。 "},"docs/安装 Docker.html":{"url":"docs/安装 Docker.html","title":"安装 Docker","keywords":"","body":"安装 Docker 要了解更多选择， Docker 官方网站上有基于各种版本的 安装步骤 。 "}}
+{"./":{"url":"./","title":"Docker","keywords":"","body":"Docker Docker 是一款容器化引擎，通过封装应用与依赖，实现跨环境运行。 "},"docs/安装 Docker.html":{"url":"docs/安装 Docker.html","title":"安装 Docker","keywords":"","body":"安装 Docker 要了解更多选择， Docker 官方网站上有基于各种版本的 安装步骤 。 "}}

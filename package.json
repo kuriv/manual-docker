@@ -1,7 +1,7 @@
 {
   "name": "manual-docker",
   "version": "1.0.1",
-  "description": "Docker 是一款容器化引擎，通过将应用及其依赖打包，从而实现一次构建、到处运行。",
+  "description": "Docker 是一款容器化引擎，通过封装应用与依赖，实现跨环境运行。",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
