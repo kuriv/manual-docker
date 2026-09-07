@@ -1,0 +1,40 @@
+{
+  "name": "manual-docker",
+  "version": "1.0.1",
+  "description": "Docker 是一款容器化引擎，通过将应用及其依赖打包，从而实现一次构建、到处运行。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gitbook serve ./ ./book"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuriv/manual-docker.git"
+  },
+  "keywords": [
+    "docker",
+    "docker-compose",
+    "docker-image",
+    "dockerfile",
+    "dockerhub"
+  ],
+  "author": "Kuriv Vesti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kuriv/manual-docker/issues"
+  },
+  "homepage": "https://github.com/kuriv/manual-docker#readme",
+  "dependencies": {
+    "gitbook-plugin-back-to-top-button": "^0.1.4",
+    "gitbook-plugin-chapter-fold": "0.0.4",
+    "gitbook-plugin-favicon": "0.0.2",
+    "gitbook-plugin-hide-element": "0.0.4",
+    "gitbook-plugin-lightbox": "^1.2.0",
+    "gitbook-plugin-prism": "^2.4.0",
+    "gitbook-plugin-search-pro": "^2.0.2",
+    "gitbook-plugin-splitter": "0.0.8",
+    "lodash": "^4.17.19",
+    "minimist": "^0.2.1",
+    "prismjs": "^1.21.0"
+  }
+}

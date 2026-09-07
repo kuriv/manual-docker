@@ -1,1 +1,3 @@
-# manual-docker
+# Docker
+
+Docker 是一款容器化引擎，通过将应用及其依赖打包，从而实现一次构建、到处运行。
