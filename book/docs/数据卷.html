@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>删除容器 · Docker</title>
+        <title>数据卷 · Docker</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -74,10 +74,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="数据卷.html" />
+    <link rel="next" href="容器网络.html" />
     
     
-    <link rel="prev" href="进入容器.html" />
+    <link rel="prev" href="删除容器.html" />
     
 
     
@@ -267,7 +267,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.11" data-path="删除容器.html">
+        <li class="chapter " data-level="1.1.11" data-path="删除容器.html">
             
                 <a href="删除容器.html">
             
@@ -280,7 +280,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.12" data-path="数据卷.html">
+        <li class="chapter active" data-level="1.1.12" data-path="数据卷.html">
             
                 <a href="数据卷.html">
             
@@ -445,7 +445,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >删除容器</a>
+        <a href=".." >数据卷</a>
     </h1>
 </div>
 
@@ -460,13 +460,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5220;&#x9664;&#x5BB9;&#x5668;">&#x5220;&#x9664;&#x5BB9;&#x5668;</h1>
-<p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5220;&#x9664;&#x5DF2;&#x505C;&#x6B62;&#x7684;&#x5BB9;&#x5668;&#x3002;</p>
-<pre class="language-"><code>docker rm CONTAINER_ID
-</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5F3A;&#x5236;&#x5220;&#x9664;&#x5BB9;&#x5668;&#x3002;</p>
-<pre class="language-"><code>docker rm -f CONTAINER_ID
-</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x6279;&#x91CF;&#x5220;&#x9664;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x3002;</p>
-<pre class="language-"><code>docker rm -f $(docker ps -aq)
+                                <h1 id="&#x6570;&#x636E;&#x5377;">&#x6570;&#x636E;&#x5377;</h1>
+<p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x5377;&#x3002;</p>
+<pre class="language-"><code>docker volume ls
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x521B;&#x5EFA;&#x6307;&#x5B9A;&#x7684;&#x6570;&#x636E;&#x5377;&#x3002;</p>
+<pre class="language-"><code>docker volume create demo
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5377;&#x7684;&#x5168;&#x90E8;&#x4FE1;&#x606F;&#x3002;</p>
+<pre class="language-"><code>docker volume inspect demo
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5220;&#x9664;&#x6307;&#x5B9A;&#x7684;&#x6570;&#x636E;&#x5377;&#x3002;</p>
+<pre class="language-"><code>docker volume rm demo
 </code></pre>
                                 
                                 </section>
@@ -494,12 +496,12 @@
 
             
                 
-                <a href="进入容器.html" class="navigation navigation-prev " aria-label="Previous page: 进入容器">
+                <a href="删除容器.html" class="navigation navigation-prev " aria-label="Previous page: 删除容器">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="数据卷.html" class="navigation navigation-next " aria-label="Next page: 数据卷">
+                <a href="容器网络.html" class="navigation navigation-next " aria-label="Next page: 容器网络">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -510,7 +512,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"删除容器","level":"1.1.11","depth":2,"next":{"title":"数据卷","level":"1.1.12","depth":2,"path":"docs/数据卷.md","ref":"docs/数据卷.md","articles":[]},"previous":{"title":"进入容器","level":"1.1.10","depth":2,"path":"docs/进入容器.md","ref":"docs/进入容器.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Docker","language":"zh-hans","gitbook":">=3.0.0","description":"Docker 手册","direction":"ltr"},"file":{"path":"docs/删除容器.md","mtime":"2026-09-09T10:00:07.057Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2026-09-09T18:13:11.593Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"数据卷","level":"1.1.12","depth":2,"next":{"title":"容器网络","level":"1.1.13","depth":2,"path":"docs/容器网络.md","ref":"docs/容器网络.md","articles":[]},"previous":{"title":"删除容器","level":"1.1.11","depth":2,"path":"docs/删除容器.md","ref":"docs/删除容器.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Docker","language":"zh-hans","gitbook":">=3.0.0","description":"Docker 手册","direction":"ltr"},"file":{"path":"docs/数据卷.md","mtime":"2026-09-09T13:36:01.481Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2026-09-09T18:13:11.593Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

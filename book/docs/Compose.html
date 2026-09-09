@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>删除容器 · Docker</title>
+        <title>Compose · Docker</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -74,10 +74,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="数据卷.html" />
+    <link rel="next" href="Dockerfile.html" />
     
     
-    <link rel="prev" href="进入容器.html" />
+    <link rel="prev" href="推送镜像.html" />
     
 
     
@@ -267,7 +267,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.11" data-path="删除容器.html">
+        <li class="chapter " data-level="1.1.11" data-path="删除容器.html">
             
                 <a href="删除容器.html">
             
@@ -384,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.20" data-path="Compose.html">
+        <li class="chapter active" data-level="1.1.20" data-path="Compose.html">
             
                 <a href="Compose.html">
             
@@ -445,7 +445,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >删除容器</a>
+        <a href=".." >Compose</a>
     </h1>
 </div>
 
@@ -460,14 +460,52 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5220;&#x9664;&#x5BB9;&#x5668;">&#x5220;&#x9664;&#x5BB9;&#x5668;</h1>
-<p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5220;&#x9664;&#x5DF2;&#x505C;&#x6B62;&#x7684;&#x5BB9;&#x5668;&#x3002;</p>
-<pre class="language-"><code>docker rm CONTAINER_ID
-</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5F3A;&#x5236;&#x5220;&#x9664;&#x5BB9;&#x5668;&#x3002;</p>
-<pre class="language-"><code>docker rm -f CONTAINER_ID
-</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x6279;&#x91CF;&#x5220;&#x9664;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x3002;</p>
-<pre class="language-"><code>docker rm -f $(docker ps -aq)
+                                <h1 id="compose">Compose</h1>
+<p>Docker Compose &#x662F;&#x7528;&#x6765;&#x4E00;&#x6B21;&#x7F16;&#x6392;&#x3001;&#x542F;&#x52A8;&#x591A;&#x4E2A;&#x5BB9;&#x5668;&#x7684;&#x5DE5;&#x5177;&#x3002;&#x7F16;&#x8F91; <code>compose.yaml</code> &#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#x3002;</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis-master</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> redis<span class="token punctuation">-</span>master
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;6379:6379&quot;</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> redis<span class="token punctuation">-</span>master<span class="token punctuation">-</span>vol<span class="token punctuation">:</span>/data
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token key atrule">redis-net</span><span class="token punctuation">:</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> redis<span class="token punctuation">-</span>server <span class="token punctuation">-</span><span class="token punctuation">-</span>appendonly yes
+
+  <span class="token key atrule">redis-slave</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>latest
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> redis<span class="token punctuation">-</span>slave
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">&quot;6380:6379&quot;</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> redis<span class="token punctuation">-</span>slave<span class="token punctuation">-</span>vol<span class="token punctuation">:</span>/data
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token key atrule">redis-net</span><span class="token punctuation">:</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> redis<span class="token punctuation">-</span>server <span class="token punctuation">-</span><span class="token punctuation">-</span>replicaof redis<span class="token punctuation">-</span>master 6379
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis-master-vol</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis-slave-vol</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis-net</span><span class="token punctuation">:</span>
 </code></pre>
+<p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x67E5;&#x770B; Docker Compose &#x7BA1;&#x7406;&#x7684;&#x5BB9;&#x5668;&#x72B6;&#x6001;&#x3002;</p>
+<pre class="language-"><code>docker compose ps -a
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528; Docker Compose &#x540E;&#x53F0;&#x542F;&#x52A8;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x3002;</p>
+<pre class="language-"><code>docker compose up -d
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528; Docker Compose &#x505C;&#x6B62;&#x5E76;&#x5220;&#x9664;&#x6240;&#x6709;&#x7684;&#x5BB9;&#x5668;&#x3001;&#x7F51;&#x7EDC;&#x4EE5;&#x53CA;&#x6570;&#x636E;&#x5377;&#x3002;</p>
+<pre class="language-"><code>docker compose down -v
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528; Docker Compose &#x542F;&#x52A8;&#x6307;&#x5B9A;&#x7684;&#x5BB9;&#x5668;&#x3002;</p>
+<pre class="language-"><code>docker compose start redis-master redis-slave
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528; Docker Compose &#x505C;&#x6B62;&#x6307;&#x5B9A;&#x7684;&#x5BB9;&#x5668;&#x3002;</p>
+<pre class="language-"><code>docker compose stop redis-master redis-slave
+</code></pre><p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x4F7F;&#x7528; Docker Compose &#x91CD;&#x65B0;&#x542F;&#x52A8;&#x6240;&#x6709;&#x5BB9;&#x5668;&#x3002;</p>
+<pre class="language-"><code>docker compose restart
+</code></pre><p>&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBF;&#x95EE; <a href="https://docs.docker.com/reference/compose-file/" target="_blank">Docker Compose</a> &#x6765;&#x67E5;&#x770B;&#x66F4;&#x591A;&#x914D;&#x7F6E;&#x5B57;&#x6BB5;&#x3002;</p>
+
                                 
                                 </section>
                             
@@ -494,12 +532,12 @@
 
             
                 
-                <a href="进入容器.html" class="navigation navigation-prev " aria-label="Previous page: 进入容器">
+                <a href="推送镜像.html" class="navigation navigation-prev " aria-label="Previous page: 推送镜像">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="数据卷.html" class="navigation navigation-next " aria-label="Next page: 数据卷">
+                <a href="Dockerfile.html" class="navigation navigation-next " aria-label="Next page: Dockerfile">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -510,7 +548,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"删除容器","level":"1.1.11","depth":2,"next":{"title":"数据卷","level":"1.1.12","depth":2,"path":"docs/数据卷.md","ref":"docs/数据卷.md","articles":[]},"previous":{"title":"进入容器","level":"1.1.10","depth":2,"path":"docs/进入容器.md","ref":"docs/进入容器.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Docker","language":"zh-hans","gitbook":">=3.0.0","description":"Docker 手册","direction":"ltr"},"file":{"path":"docs/删除容器.md","mtime":"2026-09-09T10:00:07.057Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2026-09-09T18:13:11.593Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Compose","level":"1.1.20","depth":2,"next":{"title":"Dockerfile","level":"1.1.21","depth":2,"path":"docs/Dockerfile.md","ref":"docs/Dockerfile.md","articles":[]},"previous":{"title":"推送镜像","level":"1.1.19","depth":2,"path":"docs/推送镜像.md","ref":"docs/推送镜像.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Docker","language":"zh-hans","gitbook":">=3.0.0","description":"Docker 手册","direction":"ltr"},"file":{"path":"docs/Compose.md","mtime":"2026-09-09T17:37:09.694Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2026-09-09T18:13:11.593Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
