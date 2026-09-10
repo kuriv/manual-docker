@@ -1,6 +1,6 @@
 {
   "name": "manual-docker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Docker 是一款容器化引擎，通过封装应用与依赖，实现跨环境运行。",
   "main": "index.js",
   "scripts": {

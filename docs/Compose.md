@@ -9,10 +9,15 @@ services:
     container_name: redis-master
     ports:
       - "6379:6379"
+    environment:
+      - DEMO_VARIABLE=233
     volumes:
       - redis-master-vol:/data
     networks:
       redis-net:
+    restart: unless-stopped
+    cpus: '1'
+    mem_limit: 512M
     command: redis-server --appendonly yes
 
   redis-slave:
@@ -20,10 +25,15 @@ services:
     container_name: redis-slave
     ports:
       - "6380:6379"
+    environment:
+      - DEMO_VARIABLE=666
     volumes:
       - redis-slave-vol:/data
     networks:
       redis-net:
+    restart: unless-stopped
+    cpus: '0.5'
+    mem_limit: 256M
     command: redis-server --replicaof redis-master 6379
 
 volumes:

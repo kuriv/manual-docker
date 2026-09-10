@@ -5,6 +5,7 @@ Dockerfile 中包含一系列构建指令，是自动化构建 Docker 镜像的�
 ```dockerfile
 FROM redis:latest
 WORKDIR /data
+ENV DEMO_VARIABLE=233
 RUN apt update && apt install iputils-ping -y
 EXPOSE 6379
 CMD ["redis-server","--appendonly","yes"]
