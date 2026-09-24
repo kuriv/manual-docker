@@ -20,15 +20,15 @@ services:
     mem_limit: 512M
     command: redis-server --appendonly yes
 
-  redis-slave:
+  redis-replica:
     image: redis:latest
-    container_name: redis-slave
+    container_name: redis-replica
     ports:
       - "6380:6379"
     environment:
       - DEMO_VARIABLE=666
     volumes:
-      - redis-slave-vol:/data
+      - redis-replica-vol:/data
     networks:
       redis-net:
     restart: unless-stopped
@@ -38,7 +38,7 @@ services:
 
 volumes:
   redis-master-vol:
-  redis-slave-vol:
+  redis-replica-vol:
 
 networks:
   redis-net:
@@ -65,13 +65,13 @@ docker compose down -v
 执行下面的命令，使用 Docker Compose 启动指定的容器。
 
 ```
-docker compose start redis-master redis-slave
+docker compose start redis-master redis-replica
 ```
 
 执行下面的命令，使用 Docker Compose 停止指定的容器。
 
 ```
-docker compose stop redis-master redis-slave
+docker compose stop redis-master redis-replica
 ```
 
 执行下面的命令，使用 Docker Compose 重新启动所有容器。
